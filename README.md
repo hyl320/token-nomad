@@ -46,25 +46,26 @@ Lightweight, token-saving SDD for solo developers — not an enterprise framewor
 | `AGENTS.md` / `.cursorrules` | Single-file "constitution" | Only "how to code"; Token Nomad adds PLAN/HANDOVER/DEVLOG memory + hot/cold split |
 | Cline Memory Bank | Multi-file memory | Similar spirit; Token Nomad adds hot window <100 lines + no-scan rule + PLAN master |
 
-## Install (project-level, via npx)
+## Install (copy into your project)
 
-Token Nomad is a **project-level skill**, not a global one: it manages one project's context files, so install it into the project you want to manage.
+Token Nomad is a **project-level skill**, not a global one: it manages one project's context files, so copy `SKILL.md` + `templates/` into the project you want to manage.
 
-```bash
-npx @hyl320/token-nomad /path/to/your-project
-```
-
-Run it inside a project to install into the current directory:
+macOS / Linux:
 
 ```bash
-npx @hyl320/token-nomad
+mkdir -p /path/to/your-project/.claude/skills/token-nomad
+cp -R SKILL.md templates /path/to/your-project/.claude/skills/token-nomad/
 ```
 
-This copies `SKILL.md` + `templates/` into the project's:
+Windows (PowerShell):
 
-- `.codex/skills/token-nomad/`
-- `.claude/skills/token-nomad/`
-- `.cline/skills/token-nomad/`
+```powershell
+$dest = "C:\path\to\project\.claude\skills\token-nomad"
+New-Item -ItemType Directory -Force -Path $dest | Out-Null
+Copy-Item -Recurse SKILL.md, templates $dest
+```
+
+Same pattern for Codex (`.codex/skills/`) and Cline (`.cline/skills/`).
 
 ## Quick start
 
@@ -83,8 +84,6 @@ This copies `SKILL.md` + `templates/` into the project's:
 ```text
 token-nomad/
 ├── SKILL.md          # the skill (YAML frontmatter)
-├── cli.js            # npx installer
-├── package.json
 ├── templates/        # PLAN / AGENT / HANDOVER / DEVLOG + golden tests
 ├── README.md         # this file (English + 中文)
 ├── cheatsheet.md     # prompt phrases
@@ -185,7 +184,7 @@ MIT — see [LICENSE](./LICENSE).
 
 1. 复制 `templates/` 下 5 个模板 + 忽略配置到项目根目录，替换占位符。
 2. 把黄金测试样板放进 `tests/` 或 `src/examples/`，并在 `AGENT.md` 里指向它。
-3. 安装到目标项目（项目级，非全局）：`npx @hyl320/token-nomad /path/to/项目`，会把 `SKILL.md` + `templates/` 装进项目的 `.codex/skills/` / `.claude/skills/` / `.cline/skills/`。
+3. 安装到目标项目（项目级，非全局）：把 `SKILL.md` + `templates/` 复制到项目的 `.claude/skills/token-nomad/`（Codex 用 `.codex/skills/`，Cline 用 `.cline/skills/`）。Windows 示例：`Copy-Item -Recurse SKILL.md, templates "C:\path\to\project\.claude\skills\token-nomad"`。
 4. 按上面“四步流程”推进，用 [cheatsheet.md](./cheatsheet.md) 里的暗号驱动。
 
 ## C++ / GoogleTest 版本
@@ -217,8 +216,6 @@ Mac/Linux 偷懒绝招：`ln -s AGENT.md .cursorrules` + `ln -s AGENT.md .windsu
 ```text
 token-nomad/
 ├── SKILL.md          # 技能本体（YAML frontmatter）
-├── cli.js            # npx 安装器
-├── package.json
 ├── templates/        # PLAN / AGENT / HANDOVER / DEVLOG + 黄金测试样板
 ├── README.md         # 本文件（英文 + 中文）
 ├── cheatsheet.md     # 咒语速查卡
