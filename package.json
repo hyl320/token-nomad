@@ -1,0 +1,26 @@
+{
+  "name": "token-nomad",
+  "version": "1.0.0",
+  "description": "A project-level context-as-code skill for cross-IDE AI development.",
+  "license": "MIT",
+  "bin": {
+    "token-nomad": "cli.js"
+  },
+  "files": [
+    "cli.js",
+    "SKILL.md",
+    "templates"
+  ],
+  "keywords": [
+    "agent-skill",
+    "context-as-code",
+    "cursor",
+    "claude-code",
+    "cline",
+    "codex"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hyl320/token-nomad.git"
+  }
+}
