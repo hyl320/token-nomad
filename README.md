@@ -46,9 +46,11 @@ Lightweight, token-saving SDD for solo developers — not an enterprise framewor
 | `AGENTS.md` / `.cursorrules` | Single-file "constitution" | Only "how to code"; Token Nomad adds PLAN/HANDOVER/DEVLOG memory + hot/cold split |
 | Cline Memory Bank | Multi-file memory | Similar spirit; Token Nomad adds hot window <100 lines + no-scan rule + PLAN master |
 
-## Install (copy into your project)
+## Install
 
-Token Nomad is a **project-level skill**, not a global one: it manages one project's context files, so copy `SKILL.md` + `templates/` into the project you want to manage.
+Token Nomad is a **project-level skill**, not a global one: it manages one project's context files, so install `SKILL.md` + `templates/` into the project you want to manage.
+
+**Download (recommended):** grab the latest zip from [Releases](https://github.com/hyl320/token-nomad/releases), unzip it, then copy `SKILL.md` + `templates/` into your project's skills directory:
 
 macOS / Linux:
 
@@ -180,11 +182,37 @@ MIT — see [LICENSE](./LICENSE).
 归档 agent：DEVLOG + 更新 README → 清 HANDOVER → 下一阶段
 ```
 
+## 下载与安装
+
+Token Nomad 是**项目级技能（非全局）**：安装 = 把 `SKILL.md` + `templates/` 放进目标项目的技能目录。
+
+**方式一：下载 Release（推荐，无需 git / npm）**
+
+1. 打开 [Releases](https://github.com/hyl320/token-nomad/releases)，下载最新的 `Source code (zip)`。
+2. 解压，把 `SKILL.md` + `templates/` 复制到项目的 `.claude/skills/token-nomad/`（Codex 用 `.codex/skills/`，Cline 用 `.cline/skills/`）。
+
+**方式二：直接复制**
+
+Windows（PowerShell）：
+
+```powershell
+$dest = "C:\path\to\project\.claude\skills\token-nomad"
+New-Item -ItemType Directory -Force -Path $dest | Out-Null
+Copy-Item -Recurse SKILL.md, templates $dest
+```
+
+macOS / Linux：
+
+```bash
+mkdir -p /path/to/your-project/.claude/skills/token-nomad
+cp -R SKILL.md templates /path/to/your-project/.claude/skills/token-nomad/
+```
+
 ## 套用已有项目的步骤
 
 1. 复制 `templates/` 下 5 个模板 + 忽略配置到项目根目录，替换占位符。
 2. 把黄金测试样板放进 `tests/` 或 `src/examples/`，并在 `AGENT.md` 里指向它。
-3. 安装到目标项目（项目级，非全局）：把 `SKILL.md` + `templates/` 复制到项目的 `.claude/skills/token-nomad/`（Codex 用 `.codex/skills/`，Cline 用 `.cline/skills/`）。Windows 示例：`Copy-Item -Recurse SKILL.md, templates "C:\path\to\project\.claude\skills\token-nomad"`。
+3. 安装（项目级，非全局）：见上方【下载与安装】。
 4. 按上面“四步流程”推进，用 [cheatsheet.md](./cheatsheet.md) 里的暗号驱动。
 
 ## C++ / GoogleTest 版本
