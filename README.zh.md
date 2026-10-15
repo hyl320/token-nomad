@@ -1,3 +1,5 @@
+> 中文 · [English](README.md)
+
 # Token Nomad — 跨 AI IDE 的规范化开发工具包（Context-as-Code）
 
 > 一句话：**把规范和记忆写进仓库，而不是让每个新 agent 去扫全库。**
