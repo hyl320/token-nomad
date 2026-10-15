@@ -1,8 +1,12 @@
+param([string]$Project = ".")
+
 $src = $PSScriptRoot
+# 项目级技能：装进目标项目，而不是全局 ~ 目录。默认当前目录，可传 -Project 路径。
+$project = (Resolve-Path $Project).Path
 $targets = @(
-  "$HOME\.codex\skills\token-nomad",
-  "$HOME\.claude\skills\token-nomad",
-  "$HOME\.cline\skills\token-nomad"
+  "$project\.codex\skills\token-nomad",
+  "$project\.claude\skills\token-nomad",
+  "$project\.cline\skills\token-nomad"
 )
 
 foreach ($dest in $targets) {

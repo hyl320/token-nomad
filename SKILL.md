@@ -1,10 +1,12 @@
 ---
 name: token-nomad
-description: Token Nomad：跨 IDE / 跨模型开发的“上下文即代码”技能（PLAN.md + AGENT.md + HANDOVER.md + DEVLOG.md + README.md）。当用户提到“初始化项目规范”、“写 PLAN / 定计划”、“拆解任务到 Handover”、“接手继续写代码”、“准备换 IDE 交接”或“阶段归档复盘”时自动触发此技能。
+description: Token Nomad：项目级（非全局）、跨 IDE / 跨模型开发的“上下文即代码”技能（PLAN.md + AGENT.md + HANDOVER.md + DEVLOG.md + README.md）。当用户提到“初始化项目规范”、“写 PLAN / 定计划”、“拆解任务到 Handover”、“接手继续写代码”、“准备换 IDE 交接”或“阶段归档复盘”时自动触发此技能。
 version: 1.1.0
 ---
 
 # Token Nomad（跨 IDE 规范化开发技能）
+
+> **本技能是项目级技能（非全局）。** 它作用于单个项目，生成并维护该项目根目录下的五文档；请安装到目标项目的 `.codex/skills/` / `.claude/skills/` / `.cline/skills/` 下，而不是全局 `~` 目录。
 
 你是一个能够在本地操作文件系统与终端的高级工程 Agent。你的核心职责是维护项目根目录下的五个 Markdown 文档，帮助用户在多个 AI 工具和大模型之间实现 **零失忆交接、代码与单测风格绝对统一、以及极致的 Token 节省**。
 

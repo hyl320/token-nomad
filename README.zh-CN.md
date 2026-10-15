@@ -5,6 +5,8 @@
 > 一句话：**把规范和记忆写进仓库，而不是让每个新 agent 去扫全库。**
 > 用 5 个 Markdown 文件 + 1 个 Skill，让多个 agent / 多个模型 / 多个 IDE 零失忆接手大型项目，同时把 Token 花在刀刃上。
 
+> **这是项目级技能，不是全局技能。** 它作用于单个项目，生成并维护该项目根目录下的五文档；安装到目标项目的 `.codex/skills/` / `.claude/skills/` / `.cline/skills/` 下，而不是全局 `~` 目录。
+
 ## 它解决什么问题（为什么省 Token）
 
 在多个 AI IDE / 大模型之间切换时，最怕三件事：
@@ -84,7 +86,7 @@
 
 1. 复制 `templates/` 下 5 个模板 + 忽略配置到项目根目录，替换占位符。
 2. 把黄金测试样板放进 `tests/` 或 `src/examples/`，并在 `AGENT.md` 里指向它。
-3. 把本仓库（`SKILL.md`）挂到本地 Agent 技能目录，或运行 `install.sh` / `install.ps1`。
+3. 安装到目标项目（项目级，非全局）：在项目目录里运行 `install.sh` 或 `install.ps1 -Project <项目路径>`，会把 `SKILL.md` + `templates/` 装进项目的 `.codex/skills/` / `.claude/skills/` / `.cline/skills/`。
 4. 按上面“四步流程”推进，用 [cheatsheet.md](./cheatsheet.md) 里的暗号驱动。
 
 ## C++ / GoogleTest 版本

@@ -7,6 +7,8 @@
 
 Switch AI IDEs / models freely without style drift, lost context, or burning your free quota scanning the whole codebase.
 
+> **Project-level skill, not global.** Token Nomad manages one project's context files and installs into that project's `.codex/skills/`, `.claude/skills/`, and `.cline/skills/` directories — not your global `~` skills directory.
+
 ## Why
 
 When you roam between Cursor, Windsurf, Claude Code, Copilot, Cline, Antigravity, and other AI tools, three things break:
@@ -42,41 +44,23 @@ Lightweight, token-saving SDD for solo developers — not an enterprise framewor
 
 ## Install
 
-Token Nomad is a single `SKILL.md` (plus `templates/`). Copy it into your agent's skills directory.
+Token Nomad is a **project-level skill**, not a global one: it manages one project's context files, so install it into the project you want to manage.
 
-**Codex**
-
-```bash
-mkdir -p ~/.codex/skills/token-nomad
-cp SKILL.md ~/.codex/skills/token-nomad/
-cp -R templates ~/.codex/skills/token-nomad/
-```
-
-**Claude Code**
+Run the installer from inside your project, or pass the project path:
 
 ```bash
-mkdir -p ~/.claude/skills/token-nomad
-cp SKILL.md ~/.claude/skills/token-nomad/
-cp -R templates ~/.claude/skills/token-nomad/
-```
-
-**Cline / Roo Code**
-
-```bash
-mkdir -p ~/.cline/skills/token-nomad
-cp SKILL.md ~/.cline/skills/token-nomad/
-cp -R templates ~/.cline/skills/token-nomad/
-```
-
-Or run the installer:
-
-```bash
-./install.sh        # macOS / Linux
+./install.sh /path/to/your-project          # macOS / Linux
 ```
 
 ```powershell
-.\install.ps1       # Windows (PowerShell)
+.\install.ps1 -Project C:\path\to\project   # Windows (PowerShell)
 ```
+
+This copies `SKILL.md` + `templates/` into the project's:
+
+- `.codex/skills/token-nomad/`
+- `.claude/skills/token-nomad/`
+- `.cline/skills/token-nomad/`
 
 ## Quick start
 
