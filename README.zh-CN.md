@@ -1,4 +1,4 @@
-> 中文 · [English](README.md)
+> **中文** · [**English**](README.md)
 
 # Token Nomad — 跨 AI IDE 的规范化开发工具包（Context-as-Code）
 
