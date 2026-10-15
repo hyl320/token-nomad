@@ -1,5 +1,5 @@
 {
-  "name": "token-nomad",
+  "name": "@hyl320/token-nomad",
   "version": "1.0.0",
   "description": "A project-level context-as-code skill for cross-IDE AI development.",
   "license": "MIT",

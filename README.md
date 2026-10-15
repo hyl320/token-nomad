@@ -51,13 +51,13 @@ Lightweight, token-saving SDD for solo developers — not an enterprise framewor
 Token Nomad is a **project-level skill**, not a global one: it manages one project's context files, so install it into the project you want to manage.
 
 ```bash
-npx token-nomad /path/to/your-project
+npx @hyl320/token-nomad /path/to/your-project
 ```
 
 Run it inside a project to install into the current directory:
 
 ```bash
-npx token-nomad
+npx @hyl320/token-nomad
 ```
 
 This copies `SKILL.md` + `templates/` into the project's:
@@ -185,7 +185,7 @@ MIT — see [LICENSE](./LICENSE).
 
 1. 复制 `templates/` 下 5 个模板 + 忽略配置到项目根目录，替换占位符。
 2. 把黄金测试样板放进 `tests/` 或 `src/examples/`，并在 `AGENT.md` 里指向它。
-3. 安装到目标项目（项目级，非全局）：`npx token-nomad /path/to/项目`，会把 `SKILL.md` + `templates/` 装进项目的 `.codex/skills/` / `.claude/skills/` / `.cline/skills/`。
+3. 安装到目标项目（项目级，非全局）：`npx @hyl320/token-nomad /path/to/项目`，会把 `SKILL.md` + `templates/` 装进项目的 `.codex/skills/` / `.claude/skills/` / `.cline/skills/`。
 4. 按上面“四步流程”推进，用 [cheatsheet.md](./cheatsheet.md) 里的暗号驱动。
 
 ## C++ / GoogleTest 版本
