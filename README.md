@@ -88,6 +88,7 @@ token-nomad/
 ├── SKILL.md          # the skill (YAML frontmatter)
 ├── templates/        # PLAN / AGENT / HANDOVER / DEVLOG + golden tests
 ├── README.md         # this file (English + 中文)
+├── PHILOSOPHY.md     # why it's designed this way
 ├── cheatsheet.md     # prompt phrases
 └── LICENSE
 ```
@@ -246,6 +247,7 @@ token-nomad/
 ├── SKILL.md          # 技能本体（YAML frontmatter）
 ├── templates/        # PLAN / AGENT / HANDOVER / DEVLOG + 黄金测试样板
 ├── README.md         # 本文件（英文 + 中文）
+├── PHILOSOPHY.md     # 设计哲学（为什么这么设计）
 ├── cheatsheet.md     # 咒语速查卡
 └── LICENSE
 ```
