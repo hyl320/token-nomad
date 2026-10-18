@@ -11,6 +11,9 @@
 
 Switch AI IDEs / models freely without style drift, lost context, or burning your free quota scanning the whole codebase.
 
+> **For developers whose requirements can't be captured in one sentence, who must answer for their code, and who can't afford to burn tokens — a minimal workflow that keeps context in the repo.**
+> If one sentence can describe the task, an agent handles it directly. You need this only when one sentence isn't enough.
+
 > **Project-level skill, not global.** Token Nomad manages one project's context files and installs into that project's `.codex/skills/`, `.claude/skills/`, and `.cline/skills/` directories — not your global `~` skills directory.
 
 ## Why
@@ -105,6 +108,9 @@ MIT — see [LICENSE](./LICENSE).
 
 > 一句话：**把规范和记忆写进仓库，而不是让每个新 agent 去扫全库。**
 > 用 5 个 Markdown 文件 + 1 个 Skill，让多个 agent / 多个模型 / 多个 IDE 零失忆接手大型项目，同时把 Token 花在刀刃上。
+
+> **给“一句话说不清、又必须对自己代码负责、还花不起 token”的开发者，一套把上下文落进仓库的最小工作流。**
+> 一句话能说清的需求，agent 直接搞定；一句话说不清的需求，才需要这套东西。
 
 > **这是项目级技能，不是全局技能。** 它作用于单个项目，生成并维护该项目根目录下的五文档；安装到目标项目的 `.codex/skills/` / `.claude/skills/` / `.cline/skills/` 下，而不是全局 `~` 目录。
 
