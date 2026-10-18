@@ -51,9 +51,18 @@ Lightweight, token-saving SDD for solo developers — not an enterprise framewor
 
 ## Install
 
-Token Nomad is a **project-level skill**, not a global one: it manages one project's context files, so install `SKILL.md` + `templates/` into the project you want to manage.
+Token Nomad is a **project-level skill**, not a global one: it manages one project's context files, so install it into the project you want to manage.
 
-**Download (recommended):** grab the latest zip from [Releases](https://github.com/hyl320/token-nomad/releases), unzip it, then copy `SKILL.md` + `templates/` into your project's skills directory:
+**npx (recommended):**
+
+```bash
+npx @hyl320/token-nomad                        # install into current directory
+npx @hyl320/token-nomad /path/to/your-project  # install into a specific project
+```
+
+This copies `SKILL.md` + `templates/` into the project's `.codex/skills/token-nomad/`, `.claude/skills/token-nomad/`, and `.cline/skills/token-nomad/`.
+
+**Manual copy:**
 
 macOS / Linux:
 
@@ -89,6 +98,8 @@ Same pattern for Codex (`.codex/skills/`) and Cline (`.cline/skills/`).
 ```text
 token-nomad/
 ├── SKILL.md          # the skill (YAML frontmatter)
+├── cli.js            # npx installer
+├── package.json
 ├── templates/        # PLAN / AGENT / HANDOVER / DEVLOG + golden tests
 ├── README.md         # this file (English + 中文)
 ├── PHILOSOPHY.md     # why it's designed this way
@@ -193,12 +204,16 @@ MIT — see [LICENSE](./LICENSE).
 
 Token Nomad 是**项目级技能（非全局）**：安装 = 把 `SKILL.md` + `templates/` 放进目标项目的技能目录。
 
-**方式一：下载 Release（推荐，无需 git / npm）**
+**方式一：npx（推荐）**
 
-1. 打开 [Releases](https://github.com/hyl320/token-nomad/releases)，下载最新的 `Source code (zip)`。
-2. 解压，把 `SKILL.md` + `templates/` 复制到项目的 `.claude/skills/token-nomad/`（Codex 用 `.codex/skills/`，Cline 用 `.cline/skills/`）。
+```bash
+npx @hyl320/token-nomad                      # 装进当前目录
+npx @hyl320/token-nomad /path/to/项目        # 装进指定项目
+```
 
-**方式二：直接复制**
+会自动把 `SKILL.md` + `templates/` 装进项目的 `.codex/skills/token-nomad/`、`.claude/skills/token-nomad/`、`.cline/skills/token-nomad/`。
+
+**方式二：手动复制**
 
 Windows（PowerShell）：
 
@@ -251,6 +266,8 @@ Mac/Linux 偷懒绝招：`ln -s AGENT.md .cursorrules` + `ln -s AGENT.md .windsu
 ```text
 token-nomad/
 ├── SKILL.md          # 技能本体（YAML frontmatter）
+├── cli.js            # npx 安装器
+├── package.json
 ├── templates/        # PLAN / AGENT / HANDOVER / DEVLOG + 黄金测试样板
 ├── README.md         # 本文件（英文 + 中文）
 ├── PHILOSOPHY.md     # 设计哲学（为什么这么设计）
