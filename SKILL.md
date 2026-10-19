@@ -1,6 +1,6 @@
 ---
 name: token-nomad
-description: Token Nomad：项目级（非全局）、跨 IDE / 跨模型开发的“上下文即代码”技能（PLAN.md + AGENT.md + HANDOVER.md + DEVLOG.md + README.md）。仅当用户明确要“实现/开发某个功能或项目”，或使用暗号（初始化 / 写 PLAN / 拆解到 Handover / 继续干活 / 归档）时才触发。查资料、解释概念、讨论方案、闲聊、单文件小改动等普通对话**不触发**。要求 agent 主动驱动流程、主动汇报与询问，而非被动等指令。
+description: Token Nomad：项目级（非全局）、跨 IDE / 跨模型开发的“上下文即代码”技能（PLAN.md + AGENTS.md + HANDOVER.md + DEVLOG.md + README.md）。仅当用户明确要“实现/开发某个功能或项目”，或使用暗号（初始化 / 写 PLAN / 拆解到 Handover / 继续干活 / 归档）时才触发。查资料、解释概念、讨论方案、闲聊、单文件小改动等普通对话**不触发**。要求 agent 主动驱动流程、主动汇报与询问，而非被动等指令。
 version: 1.3.0
 ---
 
@@ -25,7 +25,7 @@ version: 1.3.0
 
 - 查资料、读文档、解释概念、回答“是什么 / 为什么 / 怎么做”。
 - 问建议、讨论方案、闲聊。
-- **单文件 / 一次性小改动**：直接照 `AGENT.md` 改完就行，不要为此建 PLAN / HANDOVER（对应“三不原则”第 3 条）。
+- **单文件 / 一次性小改动**：直接照 `AGENTS.md` 改完就行，不要为此建 PLAN / HANDOVER（对应“三不原则”第 3 条）。
 - 用户只是问“能不能做 / 该怎么设计”，还没说“开始做”。
 
 **判定口诀：用户说的是“帮我做个功能”，才进流程；说的是“帮我查 / 解释 / 看看”，就不进。** 不确定时，先问一句“这是要正式排进 PLAN 去实现，还是先聊聊 / 查资料？”，不要自作主张。
@@ -36,9 +36,10 @@ version: 1.3.0
    - 存放总目标、非目标、路线图，以及每个阶段的【必完成点 / 测试点 / 验收门禁】。
    - 由聪明大模型写、人类拍板方向；**HANDOVER 从这里抽取，不要扫代码重新推。**
 
-2. **`AGENT.md`（静态宪法 - 只读）**
+2. **`AGENTS.md`（静态宪法 - 只读）**
    - 存放技术栈、目录结构、代码红线与黄金测试模板。
    - **权限**：日常开发中必须首先读取；未经用户明确指令，**严禁私自篡改**。
+   - **自动注入**：这是跨工具标准（`AGENTS.md`），会被主流 agent 自动读取注入，因此保持精简。
 
 3. **`HANDOVER.md`（施工登记表 - 读写，用完即焚）**
    - 从 `PLAN.md` 当前阶段抽取的**执行快照**（保持 100 行以内）：当前 1~3 个任务 `[ ]` + 交接日志。
@@ -51,7 +52,7 @@ version: 1.3.0
 
 5. **`README.md`（成果展示 - 阶段末更新）**
    - 项目最终是什么、怎么跑、真实数字、架构。
-   - **权限**：从 `PLAN.md` + `DEVLOG.md` + `AGENT.md` 这几个小文档**拼装**，**不要全库扫描**。
+   - **权限**：从 `PLAN.md` + `DEVLOG.md` + `AGENTS.md` 这几个小文档**拼装**，**不要全库扫描**。
    - **更新时只填对应小节、只写结论**：数字 + 一句话架构 + 怎么跑；踩坑 / 取舍不写进 README（归 DEVLOG），不重写整篇。
 
 ---
@@ -78,7 +79,7 @@ version: 1.3.0
 “省 token”不是让 agent 无上下文硬写，而是**读得少而准**：
 
 1. **落盘不是无上下文**：内容来自 agent 刚完成的 `HANDOVER.md` 交接日志（它自己刚写的），搬运即可，不读历史、不猜。
-2. **README 不是无上下文**：归档时**先读 `PLAN.md` + 当前阶段 `DEVLOG.md` + `AGENT.md`** 这三个小文档，再提炼拼装；禁止扫全库，也禁止凭空写。
+2. **README 不是无上下文**：归档时**先读 `PLAN.md` + 当前阶段 `DEVLOG.md` + `AGENTS.md`** 这三个小文档，再提炼拼装；禁止扫全库，也禁止凭空写。
 3. **禁编造**：所有数字 / 成果 / 架构必须来自上述文档；没有就写“待补”，**绝不脑补**。
 
 ---
@@ -87,7 +88,7 @@ version: 1.3.0
 
 这套技能存在的核心理由是：**让一个没有任何上下文的新 agent，用极少的 Token 就能正确接手大型项目，而不是把整个仓库扫进上下文。**
 
-- 日常干活的 agent：先只读 `AGENT.md`（懂规范）与 `HANDOVER.md`（看当前任务）。
+- 日常干活的 agent：先只读 `AGENTS.md`（懂规范）与 `HANDOVER.md`（看当前任务）。
 - 负责抽 HANDOVER 的规划 agent：只读 `PLAN.md` 的当前阶段。
 - **禁止全库扫描**：不要递归 `ls -R` / 不要 `cat` 整个目录 / 不要把整个项目索引进上下文。
 - **按需、逐文件读**：只读当前 Task 相关的源码、头文件和测试文件；定位符号用精准搜索（`rg`），不整目录读取。
@@ -109,17 +110,17 @@ version: 1.3.0
 
 当用户要求在新项目或现有项目中部署这套规范时：
 
-0. **先判断是否已初始化**：若项目根目录已存在 `PLAN.md` / `AGENT.md` / `HANDOVER.md` / `DEVLOG.md` / `README.md` 中任意一个，**禁止覆盖**；转而执行【升级已有项目】流程（见下文），并主动告知用户。
-1. **侦测环境**：读取根目录的 `package.json` / `pyproject.toml` / `pom.xml` / `go.mod` / `CMakeLists.txt` 等，识别语言、框架、测试工具；若发现 `CMakeLists.txt` + GoogleTest，则按 C++20 + CMake + GoogleTest 规则生成（参考 `AGENT.md` 的 C++ 红线与 `golden.test.cpp`）。
-2. **生成五个文档**：在根目录创建 `PLAN.md`、`AGENT.md`、`HANDOVER.md`、`DEVLOG.md`、`README.md`，把模板占位符替换为真实技术栈。
+0. **先判断是否已初始化**：若项目根目录已存在 `PLAN.md` / `AGENTS.md` / `HANDOVER.md` / `DEVLOG.md` / `README.md` 中任意一个，**禁止覆盖**；转而执行【升级已有项目】流程（见下文），并主动告知用户。
+1. **侦测环境**：读取根目录的 `package.json` / `pyproject.toml` / `pom.xml` / `go.mod` / `CMakeLists.txt` 等，识别语言、框架、测试工具；若发现 `CMakeLists.txt` + GoogleTest，则按 C++20 + CMake + GoogleTest 规则生成（参考 `AGENTS.md` 的 C++ 红线与 `golden.test.cpp`）。
+2. **生成五个文档**：在根目录创建 `PLAN.md`、`AGENTS.md`、`HANDOVER.md`、`DEVLOG.md`、`README.md`，把模板占位符替换为真实技术栈。
 3. **配置物理屏蔽**：创建/追加 `.cursorignore` 和 `.aiignore`，加入 `DEVLOG.md`，禁止 IDE 后台索引。
-4. **多 IDE 软链接兼容（可选）**：Mac/Linux 下询问是否需要 `ln -s AGENT.md .cursorrules` 等。
+4. **多 IDE 软链接兼容（可选）**：Mac/Linux 下询问是否需要 `ln -s AGENTS.md .cursorrules` 等。
 
 ### 动作 2：写 PLAN (`plan` / "定计划" / "写母版")
 
 当用户要开始一个新阶段 / 新功能并要求规划时：
 
-1. 读取 `AGENT.md` 确认目录结构与单测规范。
+1. 读取 `AGENTS.md` 确认目录结构与单测规范。
 2. **严禁直接编写业务代码！**
 3. 把总目标、非目标、路线图写入 `PLAN.md`，并把每个阶段写到【必完成点 / 测试点（Happy Path + Edge Case）/ 验收门禁】的颗粒度——**细到能直接拆成 HANDOVER，不必扫代码**。
 4. 方向由人类拍板；写好后把第一阶段抽取成 `HANDOVER.md`，标记第一个任务为 `(👈 当前进行中)`。
@@ -130,7 +131,7 @@ version: 1.3.0
 
 1. **抽取（若 HANDOVER 为空）**：只读 `PLAN.md` 当前阶段，生成 `<100 行` 的 `HANDOVER.md`（不扫代码）。
 2. **施工模式**：
-   - 读取 `AGENT.md` 与 `HANDOVER.md`，定位第一个未打勾的 `[ ]`。
+   - 读取 `AGENTS.md` 与 `HANDOVER.md`，定位第一个未打勾的 `[ ]`。
    - **遵守最小上下文协议**：不要全库扫描，只读当前任务相关文件。
    - **每次只做一个 Task！** 写代码 + 测试，本地跑测试命令（如 `npm run test` / `pytest` / `ctest`）。
    - 测试绿后，把 `[ ]` 改为 `[x]`，更新【交接班日志】。
@@ -154,13 +155,13 @@ version: 1.3.0
 
 ## 📄 内置标准模板
 
-执行【动作 1：初始化】时，使用 `templates/` 下的模板：`PLAN.md`、`AGENT.md`、`HANDOVER.md`、`DEVLOG.md`，以及 `golden.test.ts`、`golden.test.cpp`、`.cursorignore`、`.aiignore`。
+执行【动作 1：初始化】时，使用 `templates/` 下的模板：`PLAN.md`、`AGENTS.md`、`HANDOVER.md`、`DEVLOG.md`，以及 `golden.test.ts`、`golden.test.cpp`、`.cursorignore`、`.aiignore`。
 
 ---
 
 ## 🔄 升级已有项目（不要用 init 覆盖）
 
-用户可能已经在项目里用过本技能，之后技能更新了规范或模板。此时**严禁直接再次 init 覆盖**——那会冲掉项目已有的 `PLAN.md`（计划）、`AGENT.md`（技术栈定制）、`HANDOVER.md`（进度）、`DEVLOG.md`（历史）、`README.md`（成果）。
+用户可能已经在项目里用过本技能，之后技能更新了规范或模板。此时**严禁直接再次 init 覆盖**——那会冲掉项目已有的 `PLAN.md`（计划）、`AGENTS.md`（技术栈定制）、`HANDOVER.md`（进度）、`DEVLOG.md`（历史）、`README.md`（成果）。
 
 正确做法分两层：
 

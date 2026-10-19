@@ -1,12 +1,14 @@
-# Project Agent Guidelines (AGENT.md)
+# Project Agent Guidelines (AGENTS.md)
 
 > **SYSTEM MANDATE:** You are taking over an existing project. Before proposing or
 > writing ANY code, you MUST adhere to the build system, code style, and testing
 > patterns below. Do NOT introduce your own stylistic preferences.
 
+> ⚠️ 本文件是跨工具标准 `AGENTS.md`，会被主流 agent 自动读取注入，因此**保持精简**；更详细的上下文请去读 `PLAN.md` / `HANDOVER.md`。
+
 > **🗺️ 五文档导航铁律 (AI 必读):**
 > 1. `PLAN.md`: 母版 / 战略，总目标与每阶段必完成点（HANDOVER 从这里抽取）。
-> 2. `AGENT.md` (本文件): 只读宪法。动笔写代码前必读，严禁 AI 私自修改。
+> 2. `AGENTS.md` (本文件): 只读宪法。动笔写代码前必读，严禁 AI 私自修改。
 > 3. `HANDOVER.md`: 施工登记表。每次只认领第一个未完成的 `[ ]`，跑通测试后打 `[x]` 并更新交接日志。
 > 4. `DEVLOG.md`: 休眠归档库。**日常写代码时严禁读取（节省 Token）！** 仅在“阶段归档”指令时向顶部追加。
 > 5. `README.md`: 成果展示。从 PLAN + DEVLOG 拼装，不扫全库。

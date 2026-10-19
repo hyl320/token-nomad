@@ -31,7 +31,7 @@ Token Nomad fixes this with five Markdown files that act as a **minimal context 
 | File | Role | Answers | Lifecycle |
 | --- | --- | --- | --- |
 | `PLAN.md` | Master / strategy | **What to build**: goal + per-stage must-complete points | Long-lived |
-| `AGENT.md` | Constitution | **How to code**: stack, structure, red lines, golden test | Long-lived |
+| `AGENTS.md` | Constitution | **How to code**: stack, structure, red lines, golden test | Long-lived |
 | `HANDOVER.md` | Workbench | **Where we are**: current 1–3 tasks + checkbox state | Burn after use (<100 lines) |
 | `DEVLOG.md` | Archive | **What we learned** (STAR / gotchas) | Append-only |
 | `README.md` | Showcase | **Final result**: how to run, numbers | Updated per milestone |
@@ -85,7 +85,7 @@ Same pattern for `.agents/skills/`, `.codex/skills/`, and `.cline/skills/`.
 
 1. Install the skill (above).
 2. In a project, tell your agent: `initialize this project with token-nomad`.
-3. It generates `PLAN.md`, `AGENT.md`, `HANDOVER.md`, `DEVLOG.md`, `README.md`, plus `.cursorignore` / `.aiignore`.
+3. It generates `PLAN.md`, `AGENTS.md`, `HANDOVER.md`, `DEVLOG.md`, `README.md`, plus `.cursorignore` / `.aiignore`.
 4. Drive it with four phrases (see [cheatsheet.md](./cheatsheet.md)):
 
 - "Write a PLAN for X, don't write code yet."
@@ -151,7 +151,7 @@ MIT — see [LICENSE](./LICENSE).
 | 文件 | 角色 | 回答什么问题 | 谁读 / 谁写 | 生命周期 |
 | --- | --- | --- | --- | --- |
 | `PLAN.md` | 🎯 母版 / 战略 | **要做什么**：总目标 + 每阶段必完成点 | 聪明大模型写，你拍板 | 长期，几乎不动 |
-| `AGENT.md` | 🏛️ 宪法 | **怎么写**：代码规范、目录、测试样板 | 你 + 大模型写，所有 agent 只读 | 长期 |
+| `AGENTS.md` | 🏛️ 宪法 | **怎么写**：代码规范、目录、测试样板 | 你 + 大模型写，所有 agent 只读 | 长期 |
 | `HANDOVER.md` | 🔥 施工登记表 | **做到哪了**：当前 1~3 任务 + 状态 | 规划 agent 抽，小模型打勾 | 用完即焚 |
 | `DEVLOG.md` | 🏆 功劳簿 | 过程复盘（STAR / 踩坑） | 归档 agent 只写不读 | 长期，只追加 |
 | `README.md` | 📦 成果展示 | 最终是什么 / 怎么跑 / 数字 | 成熟模型拼小文档 | 长期，阶段末更新 |
@@ -163,7 +163,7 @@ MIT — see [LICENSE](./LICENSE).
 | 文件 | 用什么模型 | 说明 |
 | --- | --- | --- |
 | `PLAN.md` | 高级大模型 | 方向由你控制；这是唯一真正“烧 Token”的地方，但只做一次 |
-| `AGENT.md` | 大模型 + 你自己 | 你是拍板人，写死红线 |
+| `AGENTS.md` | 大模型 + 你自己 | 你是拍板人，写死红线 |
 | `HANDOVER.md` | 小模型（便宜的） | 只从 PLAN 抽当前阶段 + 打勾，不需要聪明 |
 | `DEVLOG.md` | 中 / 大模型 | 里程碑收尾时一次性写 |
 | `README.md` | 成熟大模型 | 读 PLAN + DEVLOG + AGENT 拼装，**不扫全库** |
@@ -184,7 +184,7 @@ MIT — see [LICENSE](./LICENSE).
 
 ### 第 3 步 · 干活（小模型）
 
-小模型读 `AGENT.md` + `HANDOVER.md` → 只做第一个 `[ ]` → 写代码 + 测试 → 跑绿 → 打 `[x]` → 更新交接日志 → **每次交接后往 `DEVLOG.md` 落一条盘（日期 + 完成啥 + 改了哪些文件 + 踩坑）**。每轮只读几十行。
+小模型读 `AGENTS.md` + `HANDOVER.md` → 只做第一个 `[ ]` → 写代码 + 测试 → 跑绿 → 打 `[x]` → 更新交接日志 → **每次交接后往 `DEVLOG.md` 落一条盘（日期 + 完成啥 + 改了哪些文件 + 踩坑）**。每轮只读几十行。
 
 ### 第 4 步 · 收尾（归档 agent）
 
@@ -233,33 +233,33 @@ cp -R SKILL.md templates /path/to/your-project/.claude/skills/token-nomad/
 ## 套用已有项目的步骤
 
 1. 复制 `templates/` 下 5 个模板 + 忽略配置到项目根目录，替换占位符。
-2. 把黄金测试样板放进 `tests/` 或 `src/examples/`，并在 `AGENT.md` 里指向它。
+2. 把黄金测试样板放进 `tests/` 或 `src/examples/`，并在 `AGENTS.md` 里指向它。
 3. 安装（项目级 + 全局）：见上方【下载与安装】。
 4. 按上面“四步流程”推进，用 [cheatsheet.md](./cheatsheet.md) 里的暗号驱动。
 
 ## C++ / GoogleTest 版本
 
-C++ 项目直接用 `templates/` 下的 `AGENT.md`（内嵌 C++ 红线）+ `golden.test.cpp`（GoogleTest 样板）；`PLAN.md`、`HANDOVER.md`、`DEVLOG.md` 与语言无关。
+C++ 项目直接用 `templates/` 下的 `AGENTS.md`（内嵌 C++ 红线）+ `golden.test.cpp`（GoogleTest 样板）；`PLAN.md`、`HANDOVER.md`、`DEVLOG.md` 与语言无关。
 
 ## 多 IDE 兼容
 
-核心规范只维护一份 `AGENT.md`（唯一真实数据源），再用各家 IDE 专属文件“套壳引用”它：
+核心规范只维护一份 `AGENTS.md`（唯一真实数据源）。它是跨工具标准，**主流 agent 会自动读取注入**；下表专属文件仅用于老工具不自动读时兜底：
 
 | 工具 / IDE | 自动读取的默认文件 | 兼容写法 |
 | --- | --- | --- |
-| Cursor | `.cursor/rules/*.mdc` 或 `.cursorrules` | `Always read and strictly follow the rules in @AGENT.md before writing any code.` |
-| Windsurf | `.windsurfrules` | `CRITICAL: Read AGENT.md in the root directory first.` |
-| Claude Code (CLI) | `CLAUDE.md` | `See @AGENT.md for project architecture, coding standards, and testing mandates.` |
-| GitHub Copilot | `.github/copilot-instructions.md` | 复制 `AGENT.md` 内容或 `ln -s AGENT.md` |
-| Cline / Roo Code | `.clinerules` | 一行指令指向 `AGENT.md` 或软链接同步 |
+| Cursor | `.cursor/rules/*.mdc` 或 `.cursorrules` | `Always read and strictly follow the rules in @AGENTS.md before writing any code.` |
+| Windsurf | `.windsurfrules` | `CRITICAL: Read AGENTS.md in the root directory first.` |
+| Claude Code (CLI) | `CLAUDE.md` | `See @AGENTS.md for project architecture, coding standards, and testing mandates.` |
+| GitHub Copilot | `.github/copilot-instructions.md` | 复制 `AGENTS.md` 内容或 `ln -s AGENTS.md` |
+| Cline / Roo Code | `.clinerules` | 一行指令指向 `AGENTS.md` 或软链接同步 |
 
-Mac/Linux 偷懒绝招：`ln -s AGENT.md .cursorrules` + `ln -s AGENT.md .windsurfrules`，改一个文件所有 IDE 同时生效。
+Mac/Linux 偷懒绝招：`ln -s AGENTS.md .cursorrules` + `ln -s AGENTS.md .windsurfrules`，改一个文件所有 IDE 同时生效。
 
 ## 三不原则（极致瘦身）
 
 1. **不写自然语言小作文**：能用代码路径和符号表达的，绝不用中文造句（`src/auth/ -> pure fn + vitest`）。
 2. **不搞 AI 自我审查**：别让另一个 AI 审前一个 AI（双倍扣费），最好的审查员是免费的本地终端（`npm run test` / `tsc` / `ctest`）。
-3. **小功能不拆太细**：只有跨多文件或额度快见底的大模块才动用 `HANDOVER.md` 详细拆解，平时一句“照 `@AGENT.md` 把 XX 改了”。
+3. **小功能不拆太细**：只有跨多文件或额度快见底的大模块才动用 `HANDOVER.md` 详细拆解，平时一句“照 `@AGENTS.md` 把 XX 改了”。
 
 ## 目录结构
 

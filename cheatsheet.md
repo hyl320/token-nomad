@@ -6,7 +6,7 @@
 
 ```text
 你现在接手这个项目，没有任何历史上下文。请遵守最小上下文协议：
-1. 先只读 @AGENT.md 和 @HANDOVER.md；
+1. 先只读 @AGENTS.md 和 @HANDOVER.md；
 2. 不要扫描/索引整个仓库，只定位当前任务相关的文件；
 3. 只执行 HANDOVER.md 里第一个未打勾 [ ] 的任务，跑通测试后打 [x] 并更新交接日志。
 ```
@@ -14,7 +14,7 @@
 ## 开工前：对“规划 AI”说
 
 ```text
-我要做【XXX 功能】。请先读 @AGENT.md 了解我们的模块结构和测试规范。
+我要做【XXX 功能】。请先读 @AGENTS.md 了解我们的模块结构和测试规范。
 不要写任何业务代码，请帮我把需求拆解成小步骤，每个步骤必须包含具体的
 【需求点】和【单元测试点】，按照 checklist 格式写入 @HANDOVER.md。
 ```
@@ -22,7 +22,7 @@
 ## 换到新 IDE：对“搬砖 AI”说
 
 ```text
-请先读取 @AGENT.md 和 @HANDOVER.md。严格按照规范，只执行 HANDOVER.md 里
+请先读取 @AGENTS.md 和 @HANDOVER.md。严格按照规范，只执行 HANDOVER.md 里
 当前第一个未打勾 [ ] 的 Task（包含里面的需求点、代码实现和单元测试点）。
 跑通测试后，把完成的条目打上 [x]，并更新最下面的【交接班日志】。
 ```
@@ -50,7 +50,7 @@
 ## 日常小改动（不拆 Handover）
 
 ```text
-照 @AGENT.md 的规范，把【XX 文件 / XX 功能】改了，别重构无关代码。
+照 @AGENTS.md 的规范，把【XX 文件 / XX 功能】改了，别重构无关代码。
 ```
 
 ## 四句大白话暗号（配合 Skill 用）
@@ -65,5 +65,5 @@
 ## 日常爽感流程
 
 - 周一（开新功能）：找个聪明模型把需求拆成测试点写进 `HANDOVER.md`。
-- 周二到周四（搬砖）：打开 Cursor / Windsurf / Antigravity，丢一句“按 `@AGENT.md` 规范做完 `@HANDOVER.md` 里下一个任务”，看它把 `[ ]` 变 `[x]`。
+- 周二到周四（搬砖）：打开 Cursor / Windsurf / Antigravity，丢一句“按 `@AGENTS.md` 规范做完 `@HANDOVER.md` 里下一个任务”，看它把 `[ ]` 变 `[x]`。
 - 周五（收工）：全部打勾后丢一句“按 STAR 法则归档进 `@DEVLOG.md`，然后清空 `@HANDOVER.md`”。
