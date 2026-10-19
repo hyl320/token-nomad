@@ -108,6 +108,7 @@ version: 1.3.0
 
 当用户要求在新项目或现有项目中部署这套规范时：
 
+0. **先判断是否已初始化**：若项目根目录已存在 `PLAN.md` / `AGENT.md` / `HANDOVER.md` / `DEVLOG.md` / `README.md` 中任意一个，**禁止覆盖**；转而执行【升级已有项目】流程（见下文），并主动告知用户。
 1. **侦测环境**：读取根目录的 `package.json` / `pyproject.toml` / `pom.xml` / `go.mod` / `CMakeLists.txt` 等，识别语言、框架、测试工具；若发现 `CMakeLists.txt` + GoogleTest，则按 C++20 + CMake + GoogleTest 规则生成（参考 `AGENT.md` 的 C++ 红线与 `golden.test.cpp`）。
 2. **生成五个文档**：在根目录创建 `PLAN.md`、`AGENT.md`、`HANDOVER.md`、`DEVLOG.md`、`README.md`，把模板占位符替换为真实技术栈。
 3. **配置物理屏蔽**：创建/追加 `.cursorignore` 和 `.aiignore`，加入 `DEVLOG.md`，禁止 IDE 后台索引。
@@ -153,6 +154,19 @@ version: 1.3.0
 ## 📄 内置标准模板
 
 执行【动作 1：初始化】时，使用 `templates/` 下的模板：`PLAN.md`、`AGENT.md`、`HANDOVER.md`、`DEVLOG.md`，以及 `golden.test.ts`、`golden.test.cpp`、`.cursorignore`、`.aiignore`。
+
+---
+
+## 🔄 升级已有项目（不要用 init 覆盖）
+
+用户可能已经在项目里用过本技能，之后技能更新了规范或模板。此时**严禁直接再次 init 覆盖**——那会冲掉项目已有的 `PLAN.md`（计划）、`AGENT.md`（技术栈定制）、`HANDOVER.md`（进度）、`DEVLOG.md`（历史）、`README.md`（成果）。
+
+正确做法分两层：
+
+1. **流程规范更新（`SKILL.md` 变了）**：重新安装技能即可（`npx @hyl320/token-nomad` 或复制到技能目录），项目根目录的五文档**不用动**——因为 `SKILL.md` 在 `.claude/skills/token-nomad/`，不在项目根目录。
+2. **模板结构更新（`templates/` 变了）**：手动把新结构补进项目对应文件，**保留已有内容**。例如 `DEVLOG.md` 模板新增了 `<!-- INSERT -->` 锚点和落盘记录格式，就给项目里的 `DEVLOG.md` 顶部补上锚点，历史内容原样保留。
+
+**判断口诀**：改的是“流程”就重装 skill；改的是“模板结构”就手动补结构；**永远不要用 init 覆盖已有项目文件。**
 
 ---
 
