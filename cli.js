@@ -5,7 +5,7 @@ const fs = require('fs');
 const os = require('os');
 const path = require('path');
 
-// 项目级 + 全局一起装，保证两边都更新。
+// 项目级 + 全局一起装，agent 目录保持一致（.agents/.codex/.claude/.cline），避免只更新一半。
 const src = __dirname;
 const explicit = process.argv[2];
 const target = explicit ? path.resolve(explicit) : process.cwd();
@@ -18,17 +18,13 @@ if (!explicit) {
 console.log('项目目录：' + target);
 console.log('全局目录：' + home);
 
-const dests = [
-  // 项目级
-  path.join(target, '.codex', 'skills', 'token-nomad'),
-  path.join(target, '.claude', 'skills', 'token-nomad'),
-  path.join(target, '.cline', 'skills', 'token-nomad'),
-  // 全局
-  path.join(home, '.agents', 'skills', 'token-nomad'),
-  path.join(home, '.codex', 'skills', 'token-nomad'),
-  path.join(home, '.claude', 'skills', 'token-nomad'),
-  path.join(home, '.cline', 'skills', 'token-nomad'),
-];
+const agents = ['.agents', '.codex', '.claude', '.cline'];
+
+const dests = [];
+for (const agent of agents) {
+  dests.push(path.join(target, agent, 'skills', 'token-nomad')); // 项目级
+  dests.push(path.join(home, agent, 'skills', 'token-nomad'));    // 全局
+}
 
 for (const dest of dests) {
   fs.mkdirSync(dest, { recursive: true });
