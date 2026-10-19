@@ -14,7 +14,7 @@ Switch AI IDEs / models freely without style drift, lost context, or burning you
 > **For developers whose requirements can't be captured in one sentence, who must answer for their code, and who can't afford to burn tokens — a minimal workflow that keeps context in the repo.**
 > If one sentence can describe the task, an agent handles it directly. You need this only when one sentence isn't enough.
 
-> **Project-level skill, not global.** Token Nomad manages one project's context files and installs into that project's `.codex/skills/`, `.claude/skills/`, and `.cline/skills/` directories — not your global `~` skills directory.
+> **Installs to both project and global scope.** Token Nomad copies `SKILL.md` + `templates/` into `.agents/skills/`, `.codex/skills/`, `.claude/skills/`, and `.cline/skills/` — both under your project and under your home (`~`) directory.
 
 ## Why
 
@@ -51,7 +51,7 @@ Lightweight, token-saving SDD for solo developers — not an enterprise framewor
 
 ## Install
 
-Token Nomad is a **project-level skill**, not a global one: it manages one project's context files, so install it into the project you want to manage.
+Token Nomad installs to **both project and global scope** (four agent dirs each), so one command keeps every location up to date.
 
 **npx (recommended):**
 
@@ -60,7 +60,7 @@ npx @hyl320/token-nomad                        # install into current directory
 npx @hyl320/token-nomad /path/to/your-project  # install into a specific project
 ```
 
-This copies `SKILL.md` + `templates/` into the project's `.codex/skills/token-nomad/`, `.claude/skills/token-nomad/`, and `.cline/skills/token-nomad/`.
+This copies `SKILL.md` + `templates/` into `.agents/skills/token-nomad/`, `.codex/skills/token-nomad/`, `.claude/skills/token-nomad/`, and `.cline/skills/token-nomad/` — both in the project and in your home directory.
 
 **Manual copy:**
 
@@ -79,7 +79,7 @@ New-Item -ItemType Directory -Force -Path $dest | Out-Null
 Copy-Item -Recurse SKILL.md, templates $dest
 ```
 
-Same pattern for Codex (`.codex/skills/`) and Cline (`.cline/skills/`).
+Same pattern for `.agents/skills/`, `.codex/skills/`, and `.cline/skills/`.
 
 ## Quick start
 
@@ -123,7 +123,7 @@ MIT — see [LICENSE](./LICENSE).
 > **给“一句话说不清、又必须对自己代码负责、还花不起 token”的开发者，一套把上下文落进仓库的最小工作流。**
 > 一句话能说清的需求，agent 直接搞定；一句话说不清的需求，才需要这套东西。
 
-> **这是项目级技能，不是全局技能。** 它作用于单个项目，生成并维护该项目根目录下的五文档；安装到目标项目的 `.codex/skills/` / `.claude/skills/` / `.cline/skills/` 下，而不是全局 `~` 目录。
+> **项目级 + 全局都会装。** 会把 `SKILL.md` + `templates/` 装进项目和用户目录下的 `.agents/skills/`、`.codex/skills/`、`.claude/skills/`、`.cline/skills/`。
 
 ## 它解决什么问题（为什么省 Token）
 
@@ -202,7 +202,7 @@ MIT — see [LICENSE](./LICENSE).
 
 ## 下载与安装
 
-Token Nomad 是**项目级技能（非全局）**：安装 = 把 `SKILL.md` + `templates/` 放进目标项目的技能目录。
+Token Nomad 会**同时装到项目级和全局**：一次安装，两边（各 4 个 agent 目录）一起更新。
 
 **方式一：npx（推荐）**
 
@@ -211,7 +211,7 @@ npx @hyl320/token-nomad                      # 装进当前目录
 npx @hyl320/token-nomad /path/to/项目        # 装进指定项目
 ```
 
-会自动把 `SKILL.md` + `templates/` 装进项目的 `.codex/skills/token-nomad/`、`.claude/skills/token-nomad/`、`.cline/skills/token-nomad/`。
+会自动把 `SKILL.md` + `templates/` 装进项目和用户目录下的 `.agents/skills/token-nomad/`、`.codex/skills/token-nomad/`、`.claude/skills/token-nomad/`、`.cline/skills/token-nomad/`。
 
 **方式二：手动复制**
 
@@ -234,7 +234,7 @@ cp -R SKILL.md templates /path/to/your-project/.claude/skills/token-nomad/
 
 1. 复制 `templates/` 下 5 个模板 + 忽略配置到项目根目录，替换占位符。
 2. 把黄金测试样板放进 `tests/` 或 `src/examples/`，并在 `AGENT.md` 里指向它。
-3. 安装（项目级，非全局）：见上方【下载与安装】。
+3. 安装（项目级 + 全局）：见上方【下载与安装】。
 4. 按上面“四步流程”推进，用 [cheatsheet.md](./cheatsheet.md) 里的暗号驱动。
 
 ## C++ / GoogleTest 版本
