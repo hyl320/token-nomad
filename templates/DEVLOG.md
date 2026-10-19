@@ -3,7 +3,7 @@
 > ⚠️ **STOP FOR AI:** Do NOT read or index this file during daily coding tasks to save tokens.
 > 只在两种时机向顶部追加：① 每次交接完成后 → 一条【落盘记录】；② 阶段归档时 → 一条【阶段总结】。
 
-<!-- 新条目请插入在此行下方，最新在最上面 -->
+<!-- INSERT（只读到这里为止）：新条目插入在此行下方，禁止读取 / 重写下方历史 -->
 
 ---
 
